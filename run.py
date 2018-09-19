@@ -1,30 +1,11 @@
-# instance/config.py
+# run.py
 
-
+''' 
+Debugs Our Application
+'''
 import os
-class Config():
-    DEBUG=False
-    CSRF_ENABLED = True
-    SECRET_KEY = os.getenv("SEC_KEY")
+from app import app
 
-class DevelopmentConfig(Config):
-    '''Enable our debug mode to True in development in order to auto restart our server on code changes'''
-    DEBUG = True
-
-class TestingConfig(Config):
-    '''Testing app configurations'''
-    TESTING = True
-    DEBUG = True
-
-
-class ReleaseConfig(Config):
-    '''Releasing app configurations'''
-    DEBUG = False
-    TESTING = False
-
-
-app_configuration={
-    'development': DevelopmentConfig,
-    'testing': TestingConfig,
-    'release': ReleaseConfig,
-}
+if __name__=='__main__':
+	port = int(os.environ.get('PORT',5000))
+	app.run(host='127.0.0.1',port=port)

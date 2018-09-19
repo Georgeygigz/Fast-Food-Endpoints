@@ -1,4 +1,4 @@
-# app/test/test_views.py
+# app/test/v1/test_views.py
 
 '''
 Testing our api endpoints
