@@ -71,3 +71,17 @@ class TestApiEndpoint(unittest.TestCase):
                              data=json.dumps(self.food_items),
                              headers={'content_type':'application/json'})
         self.assertEqual(results.status_code, 200)
+
+       
+    '''Test delete order'''
+    def test_delete_order(self):
+        '''Test delete for a specific order API Endpoint [DELETE Request]''' 
+        post_response=self.app.post('/app/v1/orders',
+                                data=json.dumps(self.food_items),
+                                      headers={'content_type': 'application/json'})
+        
+        self.assertEqual(post_response.status_code, 201)
+        delete_results=self.app.delete('app/v1/orders/1',
+                                headers={'content_type':'application/json'})
+        self.assertEqual(delete_results.status_code, 204)
+        
