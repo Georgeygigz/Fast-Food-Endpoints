@@ -35,3 +35,14 @@ class TestApiEndpoint(unittest.TestCase):
         result = self.app.post('/app/v1/orders',data=json.dumps(self.food_items))
 
         self.assertEqual(result.status_code, 201)
+
+
+    '''Test for getting the list of order'''
+    def test_get_list_of_orders(self):
+        '''Test API Endpoint can get list of order(GET Request)'''
+        response=self.app.get('/app/v1/orders',
+                                    headers={'content_type': 'application/json'})
+        
+        
+        self.assertEqual(response.status_code, 200)
+    
