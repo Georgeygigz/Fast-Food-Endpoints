@@ -35,3 +35,9 @@ def place_order():
 
     Ordered_items.append(food_order)
     return jsonify({'Ordered_items':Ordered_items}), 201 #CREATED successfully
+
+
+'''Get the list of all order'''
+@app.route('/app/v1/orders',methods=['GET'])
+def get_list_orders():    
+    return jsonify({'Orders':Ordered_items}),200 #ok
