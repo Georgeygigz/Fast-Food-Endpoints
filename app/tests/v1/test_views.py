@@ -59,3 +59,15 @@ class TestApiEndpoint(unittest.TestCase):
                             headers={'content_type': 'application/json'})
         self.assertEqual(result.status_code,200)
     
+    '''Test update order status of specific order'''
+    def test_update_order_status(self):
+        '''Test fetch for update the statusof specific order API endpoint [PUT request]'''
+        self.app.post('/app/v1/orders',
+                                   data=json.dumps(self.food_items),
+                                   headers={'content_type': 'application/json'})
+        
+        self.food_items['status']='Accepted'
+        results=self.app.put('/app/v1/orders/1',
+                             data=json.dumps(self.food_items),
+                             headers={'content_type':'application/json'})
+        self.assertEqual(results.status_code, 200)
