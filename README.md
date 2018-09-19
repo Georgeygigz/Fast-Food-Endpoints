@@ -25,10 +25,10 @@ This challenge creates a set of API Endpoints listed below
 4.Testing Framework:[PyTest, a Python Testing Framework](https://docs.pytest.org/en/latest/)
 
 # How to run the application
-<ui>
+<ul>
   <li>Clone this repo [here](https://github.com/Georgeygigz/Fast-Food-Endpoints)</li>
    <li>Set up a virtual environment<li>
    <li>run <code>pip install -r requirements.txt</code> to install the dependencies<li>
    <li>On the app's main directory, open the terminal and run the app using <code>python run.py</code><li>
-</ui>
+</ul>
  
