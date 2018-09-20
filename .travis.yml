@@ -14,4 +14,3 @@ script:
 
 after_success:
   - coveralls
-  - codecov --token=tV3mvYU0pYLiaSevCdUmTNgdFdbSEGWi7
