@@ -69,8 +69,11 @@ def update_order_status(order_id):
 @app.route('/app/v1/orders/<int:order_id>', methods=['DELETE'])
 def delete_order(order_id):
     '''Delete a specific order'''
-    order = [order for order in Ordered_items if order['id'] == order_id]
-    if not order:
-        return jsonify({'Error':'Not found'}) , 404 #bad request
-    Ordered_items.remove(order[0])
-    return jsonify({"Result": "Item Deleted Successfuly"}), 204 
+    for order in Ordered_items:
+        if order['id'] == order_id:
+            Ordered_items.remove(order)
+            break
+        else:
+            return jsonify({'Error':'Not found'}) , 404 #bad request
+    return jsonify({"Result": "Item Deleted Successfuly"}), 204
+    
