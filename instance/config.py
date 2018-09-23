@@ -3,7 +3,7 @@ import os
 class Config():
     DEBUG=False
     CSRF_ENABLED = True
-    SECRET_KEY = os.getenv("SEC_KEY")
+    
 
 class DevelopmentConfig(Config):
     '''Enable our debug mode to True in development in order to auto restart our server on code changes'''
