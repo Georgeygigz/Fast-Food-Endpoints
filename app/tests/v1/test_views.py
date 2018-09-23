@@ -39,7 +39,21 @@ class TestApiEndpoint(unittest.TestCase):
         post_result = self.app.post('/app/v1/orders',data=json.dumps(self.food_items),
                                 headers={'content_type':'application/json'})
         self.assertEqual(post_result.status_code, 409)
-        
+    
+    '''Test for invalid url'''
+    def test_invalid_url(self):
+        get_result=self.app.post('app/v11/orderss',
+                                  data=json.dumps(self.food_items),
+                                  headers={'content_type':'application/json'})
+        self.assertEqual(get_result.status_code,404)
+    
+    '''Test for invalid field'''
+    def test_invalid_fieldsname(self):
+        get_post=self.app.post('app/v1/orders',
+                                data=json.dumps({"id":1,"food_nname":'Piza',"descripption":"fast","quantity":2,"status":"pedding"}),
+                                headers={'content_type':'application/json'})
+        self.assertEqual(get_post.status_code,400)
+                                
         
 
 
