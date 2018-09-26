@@ -41,3 +41,13 @@ def place_order():
 @app.route('/app/v1/orders',methods=['GET'])
 def get_list_orders():    
     return jsonify({'Orders':Ordered_items}),200 #ok
+
+
+'''Fetch specific order'''
+@app.route('/app/v1/orders/<int:order_id>',methods=['GET'])
+def get_specific_order(order_id):
+    order=[order for order in Ordered_items if order['id']==order_id]
+    if not order:
+        return jsonify({'Error':"Food Item Not Found"}), 404 #not found
+    return jsonify({'food_item':order}), 200 #ok
+
