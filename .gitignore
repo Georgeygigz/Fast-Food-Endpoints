@@ -4,5 +4,9 @@ venv/
 <<<<<<< HEAD
 htmlcov/
 =======
+<<<<<<< HEAD
 htmlcov/
+=======
+htmlcov/
+>>>>>>> develop
 >>>>>>> develop

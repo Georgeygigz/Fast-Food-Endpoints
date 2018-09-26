@@ -14,7 +14,8 @@ def place_order():
     '''
     place a new order
     '''
-    request_data = request.get_json(force=True)
+    post_data = request.get_json(force=True)
+
    
     if (not request.json or not "food_name" in request.json):
         return jsonify({'Error':"Request Not found"}), 400 #not found
@@ -22,10 +23,10 @@ def place_order():
       return jsonify({request.json['food_name']:"Aready Exist"}), 409 #conflict
   
     data={"id":len(Ordered_items)+1,
-        "food_name":request_data.get('food_name'),
-        "description":request_data.get('description'),
-        "quantity":request_data.get('quantity'),
-        "status":'pending'}
+          "food_name":post_data.get('food_name'),
+          "description":post_data.get('description'),
+          "quantity":post_data.get('quantity'),
+         "status":'pending'}
 
     food_order={"id":data['id'],
                 "food_name":data['food_name'],
@@ -64,3 +65,16 @@ def update_order_status(order_id):
         return jsonify({'Error':"Bad Request"}), 400
     order[0]["status"]=data["status"]
     return jsonify({'order':order}), 200 #ok
+
+'''Delete specific order'''
+@app.route('/app/v1/orders/<int:order_id>', methods=['DELETE'])
+def delete_order(order_id):
+    '''Delete a specific order'''
+    for order in Ordered_items:
+        if order['id'] == order_id:
+            Ordered_items.remove(order)
+            break
+        else:
+            return jsonify({'Error':'Not found'}) , 404 #bad request
+    return jsonify({"Result": "Item Deleted Successfuly"}), 204
+    

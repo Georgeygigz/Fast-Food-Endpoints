@@ -1,7 +1,9 @@
 # Fast-Food-Endpoints
 This is Fast food ordering application
 
-[![Build Status](https://travis-ci.com/Georgeygigz/Fast-Food-Endpoints1.svg?branch=master)](https://travis-ci.com/Georgeygigz/Fast-Food-Endpoints1)  [![Coverage Status](https://coveralls.io/repos/github/Georgeygigz/Fast-Food-Endpoints1/badge.svg?branch=master)](https://coveralls.io/github/Georgeygigz/Fast-Food-Endpoints1?branch=master)  [![Maintainability](https://api.codeclimate.com/v1/badges/043ecc8c8e13714c4215/maintainability)](https://codeclimate.com/github/Georgeygigz/Fast-Food-Endpoints/maintainability)
+[![Build Status](https://travis-ci.com/Georgeygigz/Fast-Food-Endpoints.svg?branch=ft-delete-order-160366468)](https://travis-ci.com/Georgeygigz/Fast-Food-Endpoints)  [![Coverage Status](https://coveralls.io/repos/github/Georgeygigz/Fast-Food-Endpoints/badge.svg?branch=ft-delete-order-160366468)](https://coveralls.io/github/Georgeygigz/Fast-Food-Endpoints?branch=ft-delete-order-160366468) [![Maintainability](https://api.codeclimate.com/v1/badges/043ecc8c8e13714c4215/maintainability)](https://codeclimate.com/github/Georgeygigz/Fast-Food-Endpoints/maintainability)
+
+
 
 This challenge creates a set of API Endpoints listed below
 
@@ -31,4 +33,3 @@ This challenge creates a set of API Endpoints listed below
   3. run <code>pip install -r requirements.txt</code> to install the dependencies
   
   4. On the app's main directory, open the terminal and run the app using <code>python run.py</code>
- 
