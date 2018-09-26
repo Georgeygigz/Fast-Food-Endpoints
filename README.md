@@ -33,3 +33,32 @@ This challenge creates a set of API Endpoints listed below
   3. run <code>pip install -r requirements.txt</code> to install the dependencies
   
   4. On the app's main directory, open the terminal and run the app using <code>python run.py</code>
+
+
+# How to test the Api Endpoints
+
+ 1. [Postaman](https://www.getpostman.com/)is used to input data and get the output
+
+ 2. After starting the Postman, The following url are used to navigate to the Api Endpoints
+
+ 3. To list all order use this url <code>http://127.0.0.1:5000/app/v1/orders</code> ensure you select    _GET_ request
+
+ 4. To Place new order use this url <code>http://127.0.0.1:5000/app/v1/orders</code> and select _POST_
+         
+         This is an example of a new order to be placed
+                   ```{
+                       "food_name": " chips",
+                       "description": "Fryed potatotes",
+                       "quantity": 2
+                      }```
+  
+  5. To get a specific order user this url <code>http://127.0.0.1:5000/app/v1/orders/order_id</code> and select _GET_
+
+  6. To update the status of a specific order user This URL <code>http://127.0.0.1:5000/app/v1/orders/order_id</code> and select _PUT_
+      ```
+      Example 
+      
+      {"status":"Accepted"}
+      ```
+  
+  7. To delete a specific order user this url <code>http://127.0.0.1:5000/app/v1/orders/order_id</code> and select _DELETE_
