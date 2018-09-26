@@ -37,7 +37,7 @@ This challenge creates a set of API Endpoints listed below
 
 # How to test the Api Endpoints
 
- 1. [Postaman](https://www.getpostman.com/)is used to input data and get the output
+ 1. [Postman] (https://www.getpostman.com/)is used to input data and get the output
 
  2. After starting the Postman, The following url are used to navigate to the Api Endpoints
 
