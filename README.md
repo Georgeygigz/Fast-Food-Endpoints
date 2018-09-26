@@ -35,7 +35,7 @@ This challenge creates a set of API Endpoints listed below
   4. On the app's main directory, open the terminal and run the app using <code>python run.py</code>
 
 
-# How to test the Api Endpoints
+# How to test the Api Endpoints Locally
 
  1. [Postman](https://www.getpostman.com/) is used to input data and get the output
 
@@ -62,3 +62,7 @@ This challenge creates a set of API Endpoints listed below
       ```
   
   7. To delete a specific order user this url <code>http://127.0.0.1:5000/app/v1/orders/order_id</code> and select _DELETE_
+  
+# How to run the application on heroku
+
+ Navigate to this [link](https://gigzfastfood-api-heroku.herokuapp.com/app/v1/orders) to run my application on heroku
