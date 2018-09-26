@@ -32,17 +32,20 @@ class TestApiEndpoint(unittest.TestCase):
         '''
         Test API can place a new order (POST request)
         '''
-        result = self.app.post('/app/v1/orders',data=json.dumps(self.food_items))
-
-        self.assertEqual(result.status_code, 201)
+        get_result=self.app.get('app/v1/orders',
+                                 data=json.dumps(self.food_items),
+                                 headers={'content_type':'application/json'})
+        self.assertEqual(get_result.status_code,200)
+        post_result = self.app.post('/app/v1/orders',data=json.dumps(self.food_items),
+                                headers={'content_type':'application/json'})
+        self.assertEqual(post_result.status_code, 409)
 
 
     '''Test for getting the list of order'''
     def test_get_list_of_orders(self):
         '''Test API Endpoint can get list of order(GET Request)'''
         response=self.app.get('/app/v1/orders',
-                                    headers={'content_type': 'application/json'})
-        
-        
+                                    headers={'content_type': 'application/json'})        
         self.assertEqual(response.status_code, 200)
-    
+
+       

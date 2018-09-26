@@ -14,7 +14,7 @@ def place_order():
     '''
     place a new order
     '''
-    sent_data = request.get_json(force=True)
+    request_data = request.get_json(force=True)
    
     if (not request.json or not "food_name" in request.json):
         return jsonify({'Error':"Request Not found"}), 400 #not found
@@ -22,9 +22,9 @@ def place_order():
       return jsonify({request.json['food_name']:"Aready Exist"}), 409 #conflict
   
     data={"id":len(Ordered_items)+1,
-        "food_name":sent_data.get('food_name'),
-        "description":sent_data.get('description'),
-        "quantity":sent_data.get('quantity'),
+        "food_name":request_data.get('food_name'),
+        "description":request_data.get('description'),
+        "quantity":request_data.get('quantity'),
         "status":'pending'}
 
     food_order={"id":data['id'],
