@@ -51,3 +51,16 @@ def get_specific_order(order_id):
         return jsonify({'Error':"Food Item Not Found"}), 404 #not found
     return jsonify({'food_item':order}), 200 #ok
 
+
+'''Update the status of a specific order'''
+@app.route('/app/v1/orders/<int:order_id>',methods=['PUT'])
+def update_order_status(order_id):
+    sent_data = request.get_json(force=True)
+    data={"status":sent_data.get('status'),}
+    if not request.json or not "status" in request.json:
+       return jsonify({'Error':"Bad request"}), 400 
+    order=[order for order in Ordered_items if order['id']==order_id]
+    if not order:
+        return jsonify({'Error':"Bad Request"}), 400
+    order[0]["status"]=data["status"]
+    return jsonify({'order':order}), 200 #ok
