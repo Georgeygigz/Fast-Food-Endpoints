@@ -39,6 +39,7 @@ class TestApiEndpoint(unittest.TestCase):
         post_result = self.app.post('/app/v1/orders',data=json.dumps(self.food_items),
                                 headers={'content_type':'application/json'})
         self.assertEqual(post_result.status_code, 409)
+
     
     '''Test for invalid url'''
     def test_invalid_url(self):
@@ -53,16 +54,15 @@ class TestApiEndpoint(unittest.TestCase):
                                 data=json.dumps({"id":1,"food_nname":'Piza',"descripption":"fast","quantity":2,"status":"pedding"}),
                                 headers={'content_type':'application/json'})
         self.assertEqual(get_post.status_code,400)
-                                
-        
 
 
     '''Test for getting the list of order'''
     def test_get_list_of_orders(self):
         '''Test API Endpoint can get list of order(GET Request)'''
         response=self.app.get('/app/v1/orders',
-                                    headers={'content_type': 'application/json'})
+                               headers={'content_type': 'application/json'})       
         self.assertEqual(response.status_code, 200)
+
     
     '''Test fetch for specific order'''
     def test_fetch_specific_order(self):
@@ -76,6 +76,7 @@ class TestApiEndpoint(unittest.TestCase):
         result=self.app.get('/app/v1/orders/1',
                             headers={'content_type': 'application/json'})
         self.assertEqual(result.status_code,200)
+        
     
     '''Test update order status of specific order'''
     def test_update_order_status(self):

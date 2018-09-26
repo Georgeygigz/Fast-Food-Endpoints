@@ -1,4 +1,12 @@
 __pycache__/
 venv/
 .pytest_cache/
+<<<<<<< HEAD
 htmlcov/
+=======
+<<<<<<< HEAD
+htmlcov/
+=======
+htmlcov/
+>>>>>>> develop
+>>>>>>> develop
