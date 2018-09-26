@@ -48,4 +48,16 @@ class TestApiEndpoint(unittest.TestCase):
                               headers={'content_type': 'application/json'})        
         self.assertEqual(response.status_code, 200)
 
-       
+    
+    '''Test fetch for specific order'''
+    def test_fetch_specific_order(self):
+        '''Test fetch for specific order API endpoint [GET request]'''
+        response =self.app.post('/app/v1/orders',
+                                    data=json.dumps(self.food_items),
+                                    headers={'content_type': 'application/json'})
+
+        self.assertEqual(response.status_code,201)
+        
+        result=self.app.get('/app/v1/orders/1',
+                            headers={'content_type': 'application/json'})
+        self.assertEqual(result.status_code,200)
