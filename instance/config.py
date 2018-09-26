@@ -1,6 +1,4 @@
 # instance/config.py
-
-
 import os
 class Config():
     DEBUG=False
