@@ -45,7 +45,7 @@ class TestApiEndpoint(unittest.TestCase):
     def test_get_list_of_orders(self):
         '''Test API Endpoint can get list of order(GET Request)'''
         response=self.app.get('/app/v1/orders',
-                                    headers={'content_type': 'application/json'})        
+                              headers={'content_type': 'application/json'})        
         self.assertEqual(response.status_code, 200)
 
        
