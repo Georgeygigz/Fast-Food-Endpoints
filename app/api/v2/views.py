@@ -24,15 +24,14 @@ def create_account():
     user_id=len(all_user)+1
     username= sent_data["username"]
     email= sent_data ["email"]
-    password= sent_data["password"]
+    password=sent_data["password"]
     user_type= "user"
     
-
-
+    
     new_user_detail={"user_id":user_id,
            "username":username,
            "email":email,
-           "password":password,
+           "password":sha256_crypt.encrypt(password),
            "user_type":user_type}
 
     new_user=Users(**new_user_detail)
