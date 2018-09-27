@@ -11,10 +11,10 @@ except Exception as e:
 
 table_1="""CREATE TABLE IF NOT EXISTS users(
  	                   user_id INT ,
- 	                   user_name VARCHAR NOT NULL,
+ 	                   username VARCHAR UNIQUE NOT NULL,
  	                   email VARCHAR NOT NULL PRIMARY KEY,
  	                   password VARCHAR NOT NULL,
- 	                   type VARCHAR NOT NULL);"""
+ 	                   user_type VARCHAR NOT NULL);"""
 
                     
 table_2="""CREATE TABLE IF NOT EXISTS orders(
