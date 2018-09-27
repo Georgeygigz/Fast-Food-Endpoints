@@ -52,11 +52,11 @@ def create_account():
 
     if not re.match('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$])', request.json['password']):
         return jsonify({"message":"invalid password"}),401
-    
-    if not request.json:
-        return jsonify({"message":"Request not found"}),400
     if request.json['email'] in [user['email'] for user in all_user]:
       return jsonify({request.json['email']:"Aready Exist"}), 409 #conflict
+    if not request.json:
+        return jsonify({"message":"Request not found"}),400
+    
     new_user_detail={"user_id":user_id,
            "username":username,
            "email":email,
