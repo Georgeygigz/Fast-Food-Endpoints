@@ -14,8 +14,6 @@ from app.api.v2.models import Users
 
 all_user=Users().get_all_users()
 
-
-
 '''create a token decorator function'''
 def login_token_required(f):
     @wraps(f)
@@ -24,7 +22,7 @@ def login_token_required(f):
         if 'x-access-token' in request.headers:
             token=request.headers['x-access-token']
         if not token:
-            return jsonify({"message":"Token is missing"})
+            return jsonify({"message":"Please Login to continue"})
         try:
             data=jwt.decode(token,"secret")
             current_user=[c_user for c_user in all_user if c_user['user_id']==data['user_id']]
@@ -34,8 +32,7 @@ def login_token_required(f):
         return f(current_user,*args, **kwargs)
     return decorator_func
 
-
-
+'''Create a new account'''
 @app.route('/app/v2/users', methods=['POST'])
 def create_account():
     '''
@@ -70,6 +67,7 @@ def create_account():
     new_user.create_new_user()
     return jsonify({"message":"Account created successfuly"})
 
+'''Login endpoint'''
 @app.route('/app/v2/login',methods=['POST'])
 def login():
     email=request.json['email']
@@ -85,8 +83,8 @@ def login():
             res=jsonify(result)
             
         else:
-            return 'invalid Login'
+            return jsonify({"message":"Invalid Password"})
     else:
-        return 'Username not found'
+        return jsonify({"message":"Invalid Email"})
 
     return res
