@@ -45,3 +45,4 @@ def create_account():
     new_user=Users(**new_user_detail)
     new_user.create_new_user()
     return jsonify({"message":"Account created successfuly"})
+
