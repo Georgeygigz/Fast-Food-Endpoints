@@ -1,6 +1,6 @@
 import psycopg2
 import os
-from app.api.v2.dbconn import queries
+from app.dbconn import queries
 
 db_url="dbname='fastfood' user='postgres' host='localhost' port=5432 password='g@_gigz-2416'"
 

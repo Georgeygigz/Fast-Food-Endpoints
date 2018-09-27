@@ -8,7 +8,7 @@ app=Flask(__name__, instance_relative_config=True)
 
 from app.api.v1 import views
 from app.api.v2 import views
-from app.api.v2.database import create_table, destory
+from app.database import create_table, destory
 create_table()
 #destory()
 

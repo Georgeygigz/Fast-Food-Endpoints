@@ -14,6 +14,8 @@ from app.api.v2.models import Users
 
 all_user=Users().get_all_users()
 
+
+'''create a token decorator function'''
 def login_token_required(f):
     @wraps(f)
     def decorator_func(*args,**kwargs):
@@ -31,10 +33,7 @@ def login_token_required(f):
         return f(current_user,*args, **kwargs)
     return decorator_func
 
-@app.route('/app/v2/users',methods=['GET'])
-@login_token_required
-def list_all_user(current_user):
-    return jsonify({"users":all_user})
+
 
 @app.route('/app/v2/users', methods=['POST'])
 def create_account():

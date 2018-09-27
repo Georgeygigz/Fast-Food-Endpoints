@@ -1,4 +1,4 @@
-from app.api.v2.database import conn_db
+from ...database import conn_db
 
 class FastFood():
     def __init__(self):
