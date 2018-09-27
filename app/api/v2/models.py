@@ -14,3 +14,6 @@ class FastFood():
 
     def save_meals(self):
         pass
+    
+    def get_order_history(self):
+        pass
