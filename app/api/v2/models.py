@@ -38,6 +38,4 @@ class Users():
                     "password": password, 
                     "user_type": user_type}
             all_users.append(users)
-
-        #curr.close()
         return all_users
