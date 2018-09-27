@@ -26,8 +26,12 @@ def create_account():
     email= sent_data ["email"]
     password=sent_data["password"]
     user_type= "user"
-    
-    
+    if not re.match(r'^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$', request.json['email']):
+            return jsonify({"message":"invalid Email"})
+
+    if not re.match('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$])', request.json['password']):
+        return jsonify({"message":"invalid password"})
+
     new_user_detail={"user_id":user_id,
            "username":username,
            "email":email,
