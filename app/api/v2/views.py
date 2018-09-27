@@ -4,12 +4,14 @@
 This is where all API Endpoints will be captured
 '''
 import re
+import datetime
+import jwt
 from passlib.hash import sha256_crypt
 from flask import jsonify,request
 from app import app
 from app.api.v2.models import Users
 
-
+all_user=Users().get_all_users()
     
 
 @app.route('/app/v2/users', methods=['POST'])
@@ -46,3 +48,22 @@ def create_account():
     new_user.create_new_user()
     return jsonify({"message":"Account created successfuly"})
 
+@app.route('/app/v2/login',methods=['GET'])
+def login():
+    email=request.json['email']
+    get_password=request.json['password']
+    current_user=[c_user for c_user in all_user if c_user['email']==email]
+
+    if  len(current_user) > 0:		
+        password =current_user[0]['password']
+        if sha256_crypt.verify(get_password, password):
+            exp = datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
+            encoded = jwt.encode({'email': email, 'exp': exp},app.config['KEY'])
+            return {'token': encoded.decode('utf-8')}
+            
+        else:
+            return 'invalid Login'
+    else:
+        return 'Username not found'
+
+    return {'token': encoded.decode('utf-8')}
