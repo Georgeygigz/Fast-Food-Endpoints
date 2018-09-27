@@ -46,11 +46,11 @@ This challenge creates a set of API Endpoints listed below
  4. To Place new order use this url <code>http://127.0.0.1:5000/app/v1/orders</code> and select _POST_
          
          This is an example of a new order to be placed
-                   ```{
+                   {
                        "food_name": " chips",
                        "description": "Fryed potatotes",
                        "quantity": 2
-                      }```
+                      }
   
   5. To get a specific order user this url <code>http://127.0.0.1:5000/app/v1/orders/order_id</code> and select _GET_
 
