@@ -6,13 +6,35 @@ This is where all API Endpoints will be captured
 import re
 import datetime
 import jwt
+from functools import wraps
 from passlib.hash import sha256_crypt
 from flask import jsonify,request
 from app import app
 from app.api.v2.models import Users
 
 all_user=Users().get_all_users()
-    
+
+def login_token_required(f):
+    @wraps(f)
+    def decorator_func(*args,**kwargs):
+        token=None
+        if 'x-access-token' in request.headers:
+            token=request.headers['x-access-token']
+        if not token:
+            return jsonify({"message":"Token is missing"})
+        try:
+            data=jwt.decode(token,"secret")
+            current_user=[c_user for c_user in all_user if c_user['user_id']==data['user_id']]
+        except:
+            return jsonify({"message":"Invalid token"}),401
+        
+        return f(current_user,*args, **kwargs)
+    return decorator_func
+
+@app.route('/app/v2/users',methods=['GET'])
+@login_token_required
+def list_all_user(current_user):
+    return jsonify({"users":all_user})
 
 @app.route('/app/v2/users', methods=['POST'])
 def create_account():
@@ -52,13 +74,13 @@ def create_account():
 def login():
     email=request.json['email']
     get_password=request.json['password']
-    current_user=[c_user for c_user in all_user if c_user['email']==email]
+    cur_user=[c_user for c_user in all_user if c_user['email']==email]
 
-    if  len(current_user) > 0:		
-        password =current_user[0]['password']
+    if  len(cur_user) > 0:		
+        password =cur_user[0]['password']
         if sha256_crypt.verify(get_password, password):
-            exp_time = datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
-            token = jwt.encode({'user_id': current_user[0]['user_id'], 'exp': exp_time},"secret")
+            exp_time = datetime.datetime.utcnow() + datetime.timedelta(minutes=1)
+            token = jwt.encode({'user_id': cur_user[0]['user_id'], 'exp': exp_time},"secret")
             result={"message":"Login succesful", "token":token.decode('utf-8')}
             res=jsonify(result)
             
