@@ -1,4 +1,4 @@
-# app/api/v2/view.py
+# app/api/v2/views.py
 
 '''
 This is where all API Endpoints will be captured
@@ -48,7 +48,7 @@ def create_account():
     new_user.create_new_user()
     return jsonify({"message":"Account created successfuly"})
 
-@app.route('/app/v2/login',methods=['GET'])
+@app.route('/app/v2/login',methods=['POST'])
 def login():
     email=request.json['email']
     get_password=request.json['password']
@@ -58,12 +58,13 @@ def login():
         password =current_user[0]['password']
         if sha256_crypt.verify(get_password, password):
             exp_time = datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
-            encoded = jwt.encode({'user_id': current_user[0]['user_id'], 'exp_time': exp_time},app.config['KEY'])
-            #return {'token': encoded.decode('utf-8')}
+            token = jwt.encode({'user_id': current_user[0]['user_id'], 'exp': exp_time},"secret")
+            result={"message":"Login succesful", "token":token.decode('utf-8')}
+            res=jsonify(result)
             
         else:
             return 'invalid Login'
     else:
         return 'Username not found'
 
-    return {'token': encoded.decode('utf-8')}
+    return res
