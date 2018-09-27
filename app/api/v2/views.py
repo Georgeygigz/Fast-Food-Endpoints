@@ -57,9 +57,9 @@ def login():
     if  len(current_user) > 0:		
         password =current_user[0]['password']
         if sha256_crypt.verify(get_password, password):
-            exp = datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
-            encoded = jwt.encode({'email': email, 'exp': exp},app.config['KEY'])
-            return {'token': encoded.decode('utf-8')}
+            exp_time = datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
+            encoded = jwt.encode({'user_id': current_user[0]['user_id'], 'exp_time': exp_time},app.config['KEY'])
+            #return {'token': encoded.decode('utf-8')}
             
         else:
             return 'invalid Login'
