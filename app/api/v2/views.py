@@ -27,11 +27,15 @@ def create_account():
     password=sent_data["password"]
     user_type= "user"
     if not re.match(r'^[A-Za-z0-9\.\+_-]+@[A-Za-z0-9\._-]+\.[a-zA-Z]*$', request.json['email']):
-            return jsonify({"message":"invalid Email"})
+            return jsonify({"message":"invalid Email"}),401
 
     if not re.match('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$])', request.json['password']):
-        return jsonify({"message":"invalid password"})
-
+        return jsonify({"message":"invalid password"}),401
+    
+    if not request.json:
+        return jsonify({"message":"Request not found"}),400
+    if request.json['email'] in [user['email'] for user in all_user]:
+      return jsonify({request.json['email']:"Aready Exist"}), 409 #conflict
     new_user_detail={"user_id":user_id,
            "username":username,
            "email":email,
