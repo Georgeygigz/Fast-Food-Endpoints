@@ -17,6 +17,7 @@ class TestApiEndpoint(unittest.TestCase):
         '''
         Code executed before every test
         '''
+         # creates a test client
         self.app = app.test_client()
         self.app.testing = True
         self.food_items ={"id":1,

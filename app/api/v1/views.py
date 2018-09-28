@@ -14,14 +14,19 @@ def place_order():
     '''
     place a new order
     '''
+    #get the data fron the json request
+    #set it to true to ignore mime type
     post_data = request.get_json(force=True)
 
-   
+    #check for invalid request
     if (not request.json or not "food_name" in request.json):
         return jsonify({'Error':"Request Not found"}), 400 #not found
+
+    #check for  conflict  
     if request.json['food_name'] in [foodname['food_name'] for foodname in Ordered_items]:
       return jsonify({request.json['food_name']:"Aready Exist"}), 409 #conflict
-  
+    
+    #get the data from request json and asign them to the various fields
     data={"id":len(Ordered_items)+1,
           "food_name":post_data.get('food_name'),
           "description":post_data.get('description'),
