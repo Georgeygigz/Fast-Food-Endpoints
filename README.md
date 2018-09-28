@@ -67,6 +67,6 @@ This challenge creates a set of API Endpoints listed below
 
  Navigate to this [link](https://gigzfastfood-api-heroku.herokuapp.com/app/v1/orders) to run my application on heroku
 
- # How to run the application on heroku
+ # Run on postman
 
  [Run on postman](https://documenter.getpostman.com/view/5283750/RWgjYgRn)
