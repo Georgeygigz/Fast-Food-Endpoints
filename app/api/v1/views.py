@@ -14,6 +14,9 @@ def place_order():
     '''
     place a new order
     '''
+
+    #parsing the incoming json request  data
+    #force it to true to ignore mimetpe
     post_data = request.get_json(force=True)
 
    

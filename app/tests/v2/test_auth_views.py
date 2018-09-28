@@ -22,16 +22,23 @@ class TestApiEndpoints(unittest.TestCase):
                           "user_type":"user"}
     
     '''
-    Test for placement of new order
+    Test user can create new account
     '''
     def test_create_new_account(self):
         '''
-        Test API can place a new order (POST request)
+        Test API can create a new account (POST request)
         '''
-        post_result=self.app.post('/app/v2/users',
+        post_result=self.app.post('/app/v2/auth/signup',
                                  data=json.dumps(self.users),
                                  headers={'content_type':'application/json'})
         self.assertEqual(post_result.status_code,201)
-        post_result = self.app.post('/app/v2/users',data=json.dumps(self.users),
+        post_result = self.app.post('/app/v2/auth/signup',data=json.dumps(self.users),
                                 headers={'content_type':'application/json'})
         self.assertEqual(post_result.status_code, 409)
+    
+
+    '''Test user can login'''
+    def test_user_login(self):
+        response=self.app.post('/app/v2/auth/login',
+                               data=json.dumps({'email':'georgey@gmail.com','password':'passs'}))
+        self.assertEqual(response.status_code,200)
