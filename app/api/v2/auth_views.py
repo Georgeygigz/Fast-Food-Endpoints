@@ -79,7 +79,7 @@ def login():
         if sha256_crypt.verify(get_password, password):
             exp_time = datetime.datetime.utcnow() + datetime.timedelta(minutes=1)
             token = jwt.encode({'user_id': cur_user[0]['user_id'], 'exp': exp_time},"secret")
-            result={"message":"Login succesful", "token":token.decode('utf-8')}
+            result={"message":"Login succesful, Welcome {}".format(cur_user[0]['username']), "token":token.decode('utf-8')}
             res=jsonify(result)
             
         else:

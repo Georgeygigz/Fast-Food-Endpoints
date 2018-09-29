@@ -2,6 +2,7 @@ import psycopg2
 import os
 
 try:
+	
 	conn=psycopg2.connect("dbname='fastfood' user='postgres' host='localhost' port=5432 password='g@_gigz-2416'")
 	curr=conn.cursor()
 

@@ -2,12 +2,11 @@ import psycopg2
 import os
 from app.dbconn import queries
 
-db_url="dbname='fastfood' user='postgres' host='localhost' port=5432 password='g@_gigz-2416'"
 
 
 def conn_db():
 	try:
-		conn=psycopg2.connect(db_url)
+		conn=psycopg2.connect("dbname='fastfood' user='postgres' host='localhost' port=5432 password='g@_gigz-2416'")
 	except Exception as e:
 		raise e
 	return conn
