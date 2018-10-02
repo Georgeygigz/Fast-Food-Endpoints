@@ -8,7 +8,7 @@ import datetime
 import jwt
 from functools import wraps
 from passlib.hash import sha256_crypt
-from flask import jsonify,request
+from flask import jsonify,request, make_response
 from app import app
 from app.api.v2.models import Users
 
@@ -65,7 +65,7 @@ def create_account():
 
     new_user=Users(**new_user_detail)
     new_user.create_new_user()
-    return jsonify({"message":"Account created successfuly"}),201
+    return {"message":"Account created successfuly"},201
 
 '''Login endpoint'''
 @app.route('/app/v2/auth/login',methods=['POST'])
