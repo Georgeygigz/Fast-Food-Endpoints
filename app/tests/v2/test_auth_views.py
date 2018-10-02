@@ -24,21 +24,19 @@ class TestApiEndpoints(unittest.TestCase):
     '''
     Test user can create new account
     '''
-    def test_create_new_account(self):
+    def test_user_already_exist(self):
         '''
         Test API can create a new account (POST request)
         '''
         post_result=self.app.post('/app/v2/auth/signup',
                                  data=json.dumps(self.users),
                                  headers={'content_type':'application/json'})
-        self.assertEqual(post_result.status_code,201)
-        post_result = self.app.post('/app/v2/auth/signup',data=json.dumps(self.users),
-                                headers={'content_type':'application/json'})
-        self.assertEqual(post_result.status_code, 409)
+        self.assertEqual(post_result.json,{'geoe@gmail.com': 'Aready Exist'})
+        self.assertEqual(post_result.status_code,409)
     
-
-    '''Test user can login'''
-    def test_user_login(self):
-        response=self.app.post('/app/v2/auth/login',
-                               data=json.dumps({'email':'georgey@gmail.com','password':'passs'}))
-        self.assertEqual(response.status_code,200)
+    def test_user_create_account(self):
+        response=self.app.post('/app/v2/auth/signup',
+                                data=json.dumps(self.users),
+                                headers={'content_type':'application/json'})
+        self.assertEqual(response.json,{'message':'Account created successfuly'})
+        self.assertEqual(response.status_code,201)
