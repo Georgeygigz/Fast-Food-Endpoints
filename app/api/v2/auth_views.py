@@ -33,7 +33,7 @@ def login_token_required(f):
     return decorator_func
 
 '''Create a new account'''
-@app.route('/app/v2/users', methods=['POST'])
+@app.route('/app/v2/auth/users', methods=['POST'])
 def create_account():
     '''
     Create a new user
@@ -68,7 +68,7 @@ def create_account():
     return jsonify({"message":"Account created successfuly"}),201
 
 '''Login endpoint'''
-@app.route('/app/v2/login',methods=['POST'])
+@app.route('/app/v2/auth/login',methods=['POST'])
 def login():
     email=request.json['email']
     get_password=request.json['password']
