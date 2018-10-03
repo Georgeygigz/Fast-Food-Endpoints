@@ -88,3 +88,10 @@ def login():
         return jsonify({"message":"Invalid Email"})
 
     return res,200
+
+
+'''Logout'''
+@app.route('/app/v2/auth/logout',methods=['DELETE'])
+@login_token_required
+def logout():
+    pass
