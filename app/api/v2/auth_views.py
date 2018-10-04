@@ -6,6 +6,7 @@ This is where all API Endpoints will be captured
 import re
 import datetime
 import jwt
+from flask_jwt_extended import get_raw_jwt
 from functools import wraps
 from passlib.hash import sha256_crypt
 from flask import jsonify,request
@@ -13,6 +14,7 @@ from app import app
 from app.api.v2.models import Users
 
 all_user=Users().get_all_users()
+blacklist=set()
 
 '''create a token decorator function'''
 def login_token_required(f):
@@ -94,4 +96,6 @@ def login():
 @app.route('/app/v2/auth/logout',methods=['DELETE'])
 @login_token_required
 def logout():
-    pass
+    logout_session=get_raw_jwt()['jti']
+    blacklist.add(logout_session)
+    return jsonify({"message": "Successfully logged out"}), 200
